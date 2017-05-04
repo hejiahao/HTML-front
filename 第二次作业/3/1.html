@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	hr{
+		border:2px solid blue;
+	}
+	span{
+		font-size:18px;
+	}
+
+	</style>
+</head>
+<body>
+	<span>请输入您要生成的数量</span><input type="text" id ="count"><br>
+	<button onclick="createButton()">点击生成button</button>
+	<button onclick="resetButton()">清除画布</button>
+	<hr>
+	<div id="canvas">
+	</div>
+	<script type="text/javascript">
+	function $(id) {
+		return document.getElementById(id);//不能有双冒号 
+		}
+
+		
+		function createButton() {
+		
+		var count= parseInt($("count").value)+1;
+		var canvas=$("canvas");
+		console.log(count);
+		
+			for (var i=1; i < count; i++) { //这边不能有length
+				var btn=document.createElement("BUTTON");
+				btn.style.margin="4px";
+				// btn.innerHTML="按钮"+i;
+				var t =document.createTextNode("这是第"+i+"个按钮");
+				btn.appendChild(t);
+				btn.id=i; //这一步最关键的，如果没有这一步，将会
+				btn.onmousedown=function () {
+			
+					alert("您好我是按钮"+this.id );
+				}
+			canvas.appendChild(btn);
+			
+			}
+			
+		}
+		
+	    function resetButton() {
+	    	$("canvas").innerHTML="";
+	    }
+	
+
+
+	</script>
+</body>
+</html>
