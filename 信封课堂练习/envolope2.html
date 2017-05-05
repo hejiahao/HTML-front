@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>envolope</title>
+	<style>
+		*{
+			padding:0px;
+			margin: 0px;
+			font-family: "微软雅黑";
+		}
+		span{
+			/*display: block;*/
+			text-align: center;
+			/*font-style: bold;*/
+			font-size:50px;
+			margin:40px; /*auto*/;
+			/*margin:61px 0px 54px 0;*/
+		}
+		.envolope{
+			position: relative;
+			width: 1038px;
+			height: 483px;
+			border: 2px solid blue;
+			margin:0px auto;
+		}
+		.envolope_top .lope_top{
+			width: 52px;
+			height: 62px;
+			border: 1px solid blue;
+			float:left;
+			margin:10px 7px;
+			font-size: 45px;
+			font-style: bold;
+			text-align: center;
+		}
+		.envolope .envolope_img{
+			width: 120px;
+			height: 120px;
+			/*border:1px solid red;*/
+			margin:10px;
+			float: right;
+			background: url(timg.jpg) repeat ;
+			background-size: 120px 120px;
+			/*如何让他在这么小的地方完整显示*/
+			/*visibility: cover;*/
+
+		}
+
+		.envolope_hr_1{
+			width: 927px;
+			border-bottom: 2px solid black;
+			position: absolute;
+			top: 223px;
+			left: 30px;
+
+		}
+		.envolope_hr_2{
+			width: 927px;
+			border-bottom: 2px solid black;
+			position: absolute;
+			top: 260px;
+			left: 30px;
+
+		}
+		.envolope .lope_top{
+			/*position: absolute;*/
+			display: inline-block;
+			width: 52px;
+			height: 62px;
+			border: 1px solid blue;
+			margin:10px 7px;
+			font-size: 45px;
+			font-style: bold;
+			text-align: center;
+			top: 400px;
+			left: 200px;
+		}
+
+	</style>
+</head>
+<body>
+	<span>css信封</span>
+	<div class="envolope">
+		<div class="envolope_top">
+			<div class="lope_top">3</div>
+			<div class="lope_top">5</div>
+			<div class="lope_top">0</div>
+			<div class="lope_top">0</div>
+			<div class="lope_top">0</div>
+			<div class="lope_top">9</div>
+		</div>
+		<div class="envolope_img"></div>
+		<div class="envolope_hr_1">福州大学至诚学院计算系软件工程专业</div>
+		<div class="envolope_hr_2">王有财(收)</div>
+		<div class="envolope_button">
+			<div class="lope_top">3</div>
+			<div class="lope_top">5</div>
+			<div class="lope_top">0</div>
+			<div class="lope_top">0</div>
+			<div class="lope_top">0</div>
+			<div class="lope_top">9</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css信封</title>
+	<style>
+		body,header,main,div,span,address{
+			margin: 0px;
+			padding: 0px;
+			font-family: "微软雅黑";
+		}
+		header>h3{  /*我不会写h3标签，反而是写成粗体*/
+			margin:40px; /*我会写成margin:40px auto;*/
+			font-size:40px;
+			text-align: center;
+		}
+
+		main{
+			position: relative;
+			width: 860px;  /*我测量的值远大于这个，而且还不规则*/
+			height: 400px;
+			border: 3px solid blue;
+			margin: 30px auto;
+			box-shadow: 15px 15px 10px #666; /*我阴影还不不会设置*/
+
+		}
+
+		#send-postcode{
+			position: absolute;
+			right: 5px;
+			bottom: 5px;
+		}
+
+		#rec-postcode>span,#send-postcode>span{
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			font-size:36px;
+			font-weight: bold; /*这个我都忘记了*/
+			border: 3px solid blue;
+			text-align: center;
+			margin: 10px 5px;
+		}
+			
+		#stamp{
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			width: 120px;
+			height: 120px;
+			background-image: url(timg.jpg);
+			-webkit-background-size: 120px 120px;
+			/*这个我不知道背景大小可以同时设置图片的大小*/
+			background-size: 120px 120px;
+
+		}
+		address{
+			font-style: normal;
+			font-size: 32px;
+			position: absolute;
+			left: 20px;
+			top: 140px;
+			width: 90%; /*会继承父亲的长度，这时候设置90%是一个高效率的行为*/
+		}
+		address>div{
+        	border-bottom: 3px solid black;
+        	margin-bottom: 10px; 
+        	padding: 2px 50px;
+        }
+		address>div:last-of-type{
+        	text-align: right;
+        }
+
+
+	</style>
+</head>
+<body>
+	<header>
+		<h3>css信封</h3>
+	</header>
+	<main>
+		<div id="rec-postcode">
+			<span>3</span>
+			<span>5</span>
+			<span>0</span>
+			<span>0</span>
+			<span>9</span>
+		</div>
+		<div id="send-postcode">
+			<span>3</span>
+			<span>4</span>
+			<span>0</span>
+			<span>4</span>
+			<span>4</span>
+		</div>
+		<div id="stamp"></div>
+		<address>
+			<div>福州大学至诚学院计算系软件工程专业</div>
+			<div>王有财(收)</div>
+		</address>
+	</main>
+</body>
+</html>
