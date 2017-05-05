@@ -1,0 +1,64 @@
+﻿>总体思路：遍历map 就要把map变成set去处理
+		
+
+- 一种是map.keySet(),得到的是set的链表，只存储key
+- 二种是map.entrySet(),得到的是set的map表现形式，存储的是key 和 value 要用Map.Entry entry 来getKey()值
+      Map map =new HashMap();
+      map.put(1, "aaa");
+      map.put(2,"bbb");
+      map.put(3, "ccc"); 	
+
+- 如何遍历map
+
+
+    public void test1(){
+
+	 Set set =map.keySet();		
+	 Iterator it =set.iterator();		
+	 while(it.hasNext()){			
+	Integer key=(Integer) it.next();
+	String value=(String) map.get(key);
+	System.out.println(key+":"+value);		  
+	}			
+    }
+
+- 用Map.Entry来做
+
+      public void test2(){
+			
+		Set set=map.entrySet();
+			
+		Iterator it=set.iterator();
+			
+		while(it.hasNext()){
+		Map.Entry entry=(Entry) it.next();
+		int i=(int) entry.getKey();
+		String s =(String) entry.getValue();
+		System.out.println(i+":"+s);
+		}
+	 }
+
+- 增强for循环来实现第一种方式
+     
+        public void test3(){
+			//还是变成set集合
+			Set set=map.keySet();
+			
+			for(Object obj:set){
+				int i=(int) obj;
+				String s=(String) map.get(i);
+				System.out.println(i+":"+s);
+			}
+	    }
+- 增强for循环来实现第二种方式
+-  只适合取数据，不能该数据
+- 要修改数据就要传统方式for(int i=0;i<;i++)
+      public void test4(){
+	    Set set =map.entrySet();		
+    	for(Object obj:set){
+				Map.Entry entry=(Entry) obj;
+				int i=(int) entry.getKey();
+				String s=(String) entry.getValue();
+				System.out.println(i+":"+s);
+			}			
+	   }

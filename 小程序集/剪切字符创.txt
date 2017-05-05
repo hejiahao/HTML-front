@@ -1,0 +1,71 @@
+﻿>要求：用indexOf()和substring()剪切字符串
+
+- 字符串格式如下：
+ -  "hjm,hjm,hjm"
+ -  ",hjm,hjm,"
+ -  ",,hjm,hjm"
+
+>用到的方法
+
+- indexOf(int cp,int fromIndex)  从fromIndex开始算
+- substring(int beginIndex,int endIndex); 包含开始，不包含endIndex
+
+>遇到的问题
+
+- 如何持续的剪切以逗号为分割的字符呢
+      while(endIndex>=0){}
+- 当最后没有找到逗号标识符如何退出
+      if(endIndex==-1){
+			break;
+		}
+- 最后一个字符串没逗号怎么进行截切
+      System.out.println(str.substring(beginIndex+1, str.length()));
+- 最后一个问题，也是最严重的一个问题，就是为啥没有继续执行
+      endIndex=endIndex+1;
+      endIndex=str.indexOf(',', endIndex);//这一步为啥没有继续执行
+ 因为当你找到某个逗号时，这时下标为3，要想继续想后找，就要把开始寻找的下标往后一个，不然老是在3那个位置找，永远找到的都是3那个逗号，我就忽略这个细节，就想怎么没有按照自己的想法往后找，才发现它一直找的都是3那个位置。
+
+>#####实现代码如下
+
+         /**
+          * 作用：底层实现split的方法操作
+          * @author Administrator
+          * @time 09点19分
+          */
+      public class SplitTest {
+
+	   public static void main(String[] args) {
+	
+		String str = ",,hjm,lin,xup,hj,m,";
+		//定义数值下标
+		int i =0;
+		//定义结束的下标
+		int endIndex =0;
+		//定义开始下标
+		int beginIndex =-1;
+		
+		while(endIndex>=0){
+		endIndex=str.indexOf(',', endIndex);//这一步为啥没有继续执行
+		if(endIndex==-1){
+			break; //当找不到逗号就退出
+		}
+		System.out.println(str.substring(beginIndex+1, endIndex));
+		endIndex=endIndex+1; //寻找逗号的出发点要往后移一个
+		beginIndex=endIndex-1; //要把之后的位置赋给之前的位置，但要把上面的endIndex+1去掉（-1），因为substring()里面已经+1了
+		}
+		System.out.println(str.substring(beginIndex+1, str.length()));	//剪切没有逗号的字符串
+	     }
+
+        }
+>总结
+
+该实现不是很难，我主要
+- 卡在了如何使循环的继续执行截切这个要求上，用到了do-while（）循环，也用到了if(){}--else if (){}这个循环来做，但是效果都不是很好，最后就用到while(){}.
+- 如何使indexOf持续工作，用了断点，不理解怎么不往后走？最后才知道是我没有让它往后移一步
+- 其他没有什么问题了，也有想法用字符串数组存放截切下来的字符，发现是多此一举，直接打印出来不是更好。
+
+>想说的话
+
+- 程序不难，但是卡在了小疙瘩里去了，时间都浪费在去推理过程上。推来推去发现过程没错，漏掉了往后移一步，程序自己不会思考，任何的一个小动作都要人去写好交给让它做。
+####代码还得多写啊，看，光知道API也没用，
+####具体实现还是有差距的，记住了，没有实现的学习都是有残缺的，即使你倒背如流
