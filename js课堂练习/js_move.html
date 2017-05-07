@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>框体移动</title>
+	<style>
+	#rectangle{
+
+		width: 350px;
+		height: 300px;
+		border: 15px solid #ccc;
+		/*position: absolute;*/
+		position: relative;
+		left: 200px;
+	}	
+	</style>
+	<script type="text/javascript">
+		
+	function $(id) {
+		return document.getElementById(id);
+	}
+	function getStyle(element,type){
+		return window.getComputedStyle(element,null).getPropertyValue(type);
+	}
+
+	function setColor(argument) {
+		var newColor=$("setColor").value;
+		var oldColor=$("rectangle");
+		oldColor.style.borderColor=newColor;
+	}
+	// 设置阴影
+	function setShadow(argument) {
+		$("rectangle").style.boxShadow="20px 15px 12px #666";
+	}
+	//取消阴影
+	function cancleShadow(argument) {
+		$("rectangle").style.boxShadow="";
+	}
+	//向左移动
+	function move(argument) {
+		var posLeft=getStyle($("rectangle"),"left");
+		console.log(posLeft);//200px;
+		var p=parseInt(posLeft.substr(0,posLeft.indexOf("px"))); //截取0~px之间的数据
+		console.log(p);//200
+		if(argument=='left'){
+			$("rectangle").style.left=(p-20)+"px";
+		}
+		else if(argument=='right'){
+			$("rectangle").style.left=(p+20)+"px";
+		}
+
+	}
+	function autoMove(argument) {
+		var interval=setInterval(function(){
+ 			move('right')
+ 			},300);
+		//....补充点击暂停就停止，这个事件给了其他button，而不是在button里给它onclick事件
+		//可以这么说，onmousedown就是button的代名词
+		window.onmousedown=
+		function () {
+			clearInterval(interval);
+		}
+
+		
+	}
+	
+	</script>
+</head>
+<body>
+	<div id="rectangle"></div>
+	<span>请输入新的边框颜色：</span>
+	<input type="text" id="setColor">
+	<button id="setOk" onclick="setColor()">设置颜色</button>
+	<button id="setShadow" onclick="setShadow()">设置阴影</button>
+	<button id="cancleShadow" onclick="cancleShadow()">取消阴影</button>
+	<button id="turnLeft" onclick="move('left')">向左移动</button>
+	<button id="turnRight" onclick="move('right')">向右移动</button>
+	<button id="autoRight" onclick="autoMove()">自动移动</button>
+	<button id="stop" >暂停</button>
+
+</body>
+</html>
