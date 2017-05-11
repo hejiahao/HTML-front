@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可以动态增删表格</title>
+	<script type="text/javascript">
+		
+		function $(id) {
+			return document.getElementById(id);
+		}
+		function add() {
+		
+			var row=$("stuList").insertRow();
+			// console.log($("stuList").insertRow());
+			// var td =row.insertCell(0);不这么写一看就不是专业的
+			row.insertCell(0).innerHTML="S"+(100+Math.floor(Math.random()*900));
+			row.insertCell(1).innerHTML="xiaohua";
+			row.insertCell(2).innerHTML="<button onclick='removeButton(this)'>删除</button>";
+
+			//记住这个里面有个单引号
+
+		}
+
+		function removeButton(stuInfo) {
+			// console.log($("stuList").rows.length);查找出有几行
+			// console.log(stuInfo.parentNode.parentNode);是tr 
+			
+		//遍历数组
+		// 如何知道要删除是第几个呢，一个个tr往下找，找到是相同节点，把位置记录下来
+			var index;
+		 	for (var i = 0; i < $("stuList").rows.length; i++) {
+
+		 		if($("stuList").rows[i].isSameNode(stuInfo.parentNode.parentNode)){
+		 			index=i;//说明找到该行的位置了，然后跳出
+		 			break;
+		 		}
+		 	}
+		 	$("stuList").deleteRow(index);
+
+		}
+
+
+	</script>
+</head>
+<body>
+	<table border="1" cellspacing="0" id="stuList">
+		<thead>
+			<td>学好</td>
+			<td>姓名</td>
+			<td>操作</td>
+		</thead>
+		<tr>
+			<td>s001</td>
+			<td>小花</td>
+			<td><button onclick="removeButton(this)">删除</button></td>
+		</tr>
+		<tr>
+			<td>s002</td>
+			<td>小红</td>
+			<td><button onclick="removeButton(this)">删除</button></td>
+		</tr>
+	</table>
+	<button onclick="add()">增加一行</button>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>createDocumentFragment的使用技巧</title>
+	<script type="text/javascript">
+		// 传统的办法会渲染界面很多次
+		// window.onload=function (argument) {
+		// 	for (var i = 0; i < 10; i++) {
+		// 	var p =document.createElement("p");
+		// 	var data =document.createTextNode("段落");
+		// 	p.appendChild(data);
+		// 	document.body.appendChild(p);
+
+		// 	}
+		// }
+
+		//新的方法
+		window.onload=function (argument) {
+			var cdf=document.createDocumentFragment();
+			for (var i = 0; i <10; i++) {
+		
+				var p =document.createElement("p");
+				var data=document.createTextNode("段落");
+				p.appendChild(data);
+				cdf.appendChild(p);
+
+			}
+				document.body.appendChild(cdf);
+		}
+		
+
+	</script>
+</head>
+<body>
+	<p>在更新少量节点的时候可以直接向document.body节点中添加，但是当要向document中添加大量数据时，如果直接添加这些新节点，这个过程非常缓慢，因为每添加一个节点都会调用父节点的appendChild()方法，为了解决这个问题，可以创建一个文档碎片，把所有的新节点附加其上，然后把文档碎片一次性添加到document中。
+	</p>
+
+	
+
+
+</body>
+</html>

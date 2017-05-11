@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用dom来增加表格</title>
+	<script type="text/javascript">
+		function add() {
+			var tline = document.createElement("tr");  
+
+			var tData=document.createElement("td");
+			var tData1=document.createElement("td");
+			var tData2=document.createElement("td");
+
+			var text =document.createTextNode("s0023");
+			var text2 =document.createTextNode("ximing");
+
+			var removeBtn= document.createElement("BUTTON");
+			removeBtn.appendChild(document.createTextNode("删除"));
+			
+			//为每个button添加点击事件
+			var onclickAttr =document.createAttribute("onclick");
+			// 事件的值为
+			onclickAttr.value="removeButton(this)";
+			// 为button放置这个事件
+			removeBtn.setAttributeNode(onclickAttr);
+
+			// 每一个td添加相应的内容
+			tData.appendChild(text);
+			tData1.appendChild(text2);
+			tData2.appendChild(removeBtn);
+
+			// 每一行添加三个td
+			tline.appendChild(tData);
+			tline.appendChild(tData1);
+			tline.appendChild(tData2);
+			var tbody=document.getElementById('stuList');
+
+			tbody.appendChild(tline);
+
+			//关键的问题是如何利用button的点击删除一行
+
+
+		}
+
+		function removeButton(removeBtn) {
+				console.log(removeBtn); //button
+				console.log(removeBtn.parentNode); //td
+				console.log(removeBtn.parentNode.parentNode); //tr
+				console.log(removeBtn.parentNode.parentNode.parentNode);//tbody
+				
+				var tr=removeBtn.parentNode.parentNode;
+				//找到tbody级别
+				var tbody=tr.parentNode;
+				tbody.removeChild(tr);
+				
+			}
+	</script>
+</head>
+<body>
+	<table border="1" cellspacing="0" id="stuList">
+		<thead>
+			<td>学好</td>
+			<td>姓名</td>
+			<td>操作</td>
+		</thead>
+		<tr>
+			<td>s001</td>
+			<td>小花</td>
+			<td><button onclick="removeButton(this)">删除</button></td>
+		</tr>
+		<tr>
+			<td>s002</td>
+			<td>小红</td>
+			<td><button onclick="removeButton(this)">删除</button></td>
+		</tr>
+	</table>
+	<button onclick="add()">增加一行</button>
+</body>
+</html>
