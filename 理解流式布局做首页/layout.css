@@ -1,0 +1,46 @@
+body{
+	margin: 0;
+	padding: 0;
+	min-width: 525px;
+}
+
+/*在固定/流动混合布局中定义两栏*/
+
+header,footer{
+	float: left;
+	width: 100%;
+	height: 30px;
+	background-color: #7152f4;
+}
+
+
+#wrapper{
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+
+#left_side{
+	width: 25%;
+	margin-bottom: -2000px;
+	padding-bottom: 2000px;
+	float: left;
+	background-color:orange;
+}
+
+#content_area{
+	width: 50%;
+	margin-bottom: -2000px;
+	padding-bottom: 2000px;
+	float: left;
+	background-color: #fff;
+
+}
+#right_side{
+	width: 25%;
+	margin-bottom: -2000px;
+	padding-bottom: 2000px;
+	float: right;
+	background-color: pink;
+}
