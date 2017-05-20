@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>画圆程序</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script src="circle.js"></script>
+	<style>	
+	#canvas{
+		width: 1100px;
+		height: 500px;
+		margin: 30px auto;
+		border: 3px solid red;
+	}
+	#canvas>span:hover{
+			text-shadow: 3px 3px 5px #3563f2;
+			box-shadow: 5px 5px 5px #453f55;
+		}
+
+
+
+
+	</style>
+	<script type="text/javascript">
+
+	function $(id) {
+		return document.getElementById(id);
+	}
+	// 实现画圆的能力
+	var number=1;
+	function drawDisc(){
+		var disc1=new disc($("canvas"),number);
+		if(disc1.isValid()){
+		 disc1.draw();
+		 number++;
+		}
+		 
+
+	}
+	function clearCanvas(){
+		$("canvas").innerHTML="";
+	}
+
+	</script>
+</head>
+<body>
+	<div class="bg-primary">
+		<div style="font-size: 26px;padding: 8px">画圆程序 v1.0</div>
+	</div>
+	<div id="canvas"></div>
+    <div class="text-center">
+        <button class="btn btn-primary btn-sm" onclick="drawDisc();">测试</button>
+        <button class="btn btn-primary btn-sm" onclick="clearCanvas();">清空画板</button>
+   </div>
+</body>
+</html>
