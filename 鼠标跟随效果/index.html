@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标跟随效果实现</title>
+	<style type="text/css">
+
+	    *{
+	    	margin: 0px;
+	    	padding: 0px;	
+	    }
+		
+		#ball{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+		}
+
+	</style>
+	<script type="text/javascript">
+		
+		window.onload = function(){
+
+          var ball = document.getElementById("ball"); 
+
+          var currentXpos=0;
+          var currentYpos=0;
+          var destXpos=0;
+          var destYpos=0;
+
+          window.onmousemove=function(event){
+              //console.log("mouse moving now! "+new Date());
+              //console.log("client:["+event.clientX+","+event.clientY+"]");
+              //console.log("screen: ["+event.screenX+","+event.screenY+"]");
+              destXpos = event.clientX - ball.offsetWidth;
+              destYpos = event.clientY - ball.offsetHeight;
+          };
+
+          window.setInterval(function(){
+              
+              currentXpos += (destXpos-currentXpos)/10;
+              currentYpos += (destYpos-currentYpos)/10;
+
+              console.log(currentXpos+","+currentYpos);
+
+              ball.style.left = currentXpos+"px";
+              ball.style.top = currentYpos+"px";
+
+          },80);
+
+		};
+
+
+	</script>
+</head>
+<body>
+	<img id="ball" src="images/ball-light-2.gif">
+</body>
+</html>

@@ -54,6 +54,7 @@
 
 		//判断是否合法
 		this.isValid=function (argument) {
+			
 			if (this.centerX-this.radius<122) {
 				return false;
 			}

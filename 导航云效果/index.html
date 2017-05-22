@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航云效果实现</title>
+	<style type="text/css">
+		
+		body,nav,ul,li,span{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		body{
+			background-color: #999;
+		}
+
+		nav{
+			width: 800px;
+			height: 42px;
+			margin: 150px auto;
+			/*background-color: #fff;*/
+			border-radius: 10px;
+			background:#fff url(images/rss.png) no-repeat right center;
+			position: relative;
+		}
+
+		nav>ul{
+            list-style-type: none;
+            position: absolute;
+            z-index: 2;
+		}
+
+		nav>ul>li{
+			float:left;
+			width: 83px;
+			height: 42px;
+			/*border:1px solid red;*/
+			text-align: center;
+			line-height: 42px;
+			cursor:pointer;
+		}
+
+		#cloud-nav{
+			width: 83px;
+			height: 42px;
+			display: inline-block;
+			background:url(images/cloud.gif);
+			position: absolute;
+			z-index: 1;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+
+		function $(id) {
+	    	return document.getElementById(id);
+	    }
+		
+        window.onload = function(){
+
+             var currentPos = 0;
+             var destPos = 0;
+
+             //console.log("document loaded ok!");
+             // console.log($("navbar").children.length);
+             var navItems = $("navbar").children;
+             for(var i=0;i<navItems.length;i++)
+             	navItems[i].onmouseover=function(){
+                    //console.log(this.innerHTML); //this和java中的概念不同，是一个动态概念，代表这个方法的调用者。
+             	    //console.log(this.offsetLeft);
+             	    //$("cloud-nav").style.left = this.offsetLeft+"px";
+             	    destPos = this.offsetLeft;
+             	};
+
+
+             //创建一个定时器，每间隔80毫秒，就重画一次云图标。 
+             //缓动公式
+             window.setInterval(function(){
+                    
+                currentPos = currentPos + (destPos-currentPos)/5;
+                $("cloud-nav").style.left = currentPos+"px";
+                console.log("destPos:"+destPos+",currPos:"+currentPos);
+
+             },100);
+
+
+             $("navbar").onmouseout = function(){
+             	destPos=0;
+             };
+            
+
+        };
+
+
+	</script>
+</head>
+<body>
+	<nav>
+		<ul id="navbar">
+			<li>首页新闻</li>
+			<li>公司简介</li>
+			<li>活动策划</li>
+			<li>企业文化</li>
+			<li>招聘信息</li>
+			<li>员工天地</li>
+			<li>招聘信息</li>
+			<li>项目企划</li>
+		</ul>
+		<span id="cloud-nav"></span>
+	</nav>
+</body>
+</html>

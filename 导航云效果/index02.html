@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航云效果</title>
+	<style type="text/css">
+		
+	body,nav,ul,span{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	body{
+		background-color: #999;
+	}
+	nav{
+		width: 800px;
+		height: 42px;
+		position: relative;
+		background: #fff url(images/rss.png) no-repeat right ;
+		margin: 150px auto;
+		border-radius: 10px;
+	}
+	nav>ul{
+		list-style-type: none;
+		position: absolute;
+		z-index: 2;
+	}
+ 	/*之前我认为文字之间的距离要通过padding来设置，这样会出现第一个的padding空出来的问题。与第一个顶格不相符。现在
+ 	可以通过设置li的宽度和居中来保证之后的间隔*/
+	nav>ul>li{
+		width: 82px;
+		height: 42px;
+		line-height: 42px;
+		text-align: center;
+		cursor: pointer;
+		float: left;
+
+	}
+   #cloud-nav{
+   	width: 82px;
+   	height: 42px;
+   	display: inline-block;
+   	background: url(images/cloud.gif);
+   	position: absolute;
+   	left: 0px;
+   	z-index: 1;
+
+   }
+
+
+	</style>
+	<script type="text/javascript">
+		function $(id) {
+			return document.getElementById(id);
+		}
+
+		window.onload=function (argument) {
+			
+			var desXpos=0; //目标的位置
+			var currentPos=0; //当前的位置
+
+			var navItems =$("navbar").children;
+			console.log(navItems.length);
+
+			for (var i = 0; i < navItems.length; i++) {
+				navItems[i].onmouseover=function (argument) {
+					console.log(this.offsetLeft);
+					desXpos=this.offsetLeft;
+				}
+			}
+
+
+			window.setInterval(function () {
+				currentPos=(desXpos-currentPos)/5+currentPos;
+				$("cloud-nav").style.left=currentPos+"px";
+			},100)
+
+			$("navbar").onmouseout=function (argument) {
+				desXpos=0;
+			}
+		}
+
+	</script>
+
+</head>
+<body>
+	<nav>
+		<ul id="navbar">
+			<li>首页新闻</li>
+			<li>公司简介</li>
+			<li>活动策划</li>
+			<li>企业文化</li>
+			<li>招聘信息</li>
+			<li>员工天地</li>
+			<li>招聘信息</li>
+			<li>项目企划</li>
+		</ul>
+		<span id="cloud-nav"></span>
+	</nav>
+</body>
+</html>
